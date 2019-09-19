@@ -21,15 +21,20 @@ var cards=[
     },
     ];
 var cardsInPlay=[];
-
+var wins=0;
+var loses=0;
 
 function checkForMatch(){
     if(cardsInPlay[0]===cardsInPlay[1]){
         alert("You found a match!");
+        wins++;
     }
     else{
         alert("Sorry, try again.");
+        loses++;
     }
+
+    updateScore(wins,loses);
 
 }
 function flipCard(){
@@ -51,13 +56,26 @@ function resetGame(){
 }
 while(cardsInPlay.length !=0){
 cardsInPlay.pop();}
+}
 
+function updateScore(win,lose){
+document.getElementById('win').textContent=win;
+document.getElementById('lose').textContent=lose;
 
+}
+function resetScore(){
+  wins=0;
+  loses=0;
+  updateScore(wins,loses);
 }
 
 function createBoard(){
-  var button=document.getElementById('reset');
-  button.addEventListener('click',resetGame);
+  var gameRstBtn=document.getElementById('reset');
+  gameRstBtn.addEventListener('click',resetGame);
+
+  var scoreRstBtn=document.getElementById('reset-score');
+  scoreRstBtn.addEventListener('click',resetScore);
+
   for(var i=0;i<cards.length;i++){
     var cardElement=document.createElement('img');
     cardElement.setAttribute('src',"images/back.png");
