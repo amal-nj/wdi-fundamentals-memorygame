@@ -42,9 +42,22 @@ function flipCard(){
     if(cardsInPlay.length===2){
     checkForMatch();}
 }
+ 
+function resetGame(){
+  this.setAttribute('src',"images/back.png");
+  var cardElement=document.getElementsByTagName('img');
+  for(var i=0;i<cards.length;i++){
+    cardElement[i].setAttribute('src',"images/back.png");
+}
+while(cardsInPlay.length !=0){
+cardsInPlay.pop();}
 
+
+}
 
 function createBoard(){
+  var button=document.getElementById('reset');
+  button.addEventListener('click',resetGame);
   for(var i=0;i<cards.length;i++){
     var cardElement=document.createElement('img');
     cardElement.setAttribute('src',"images/back.png");
